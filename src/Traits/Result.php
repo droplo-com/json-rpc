@@ -15,14 +15,14 @@ trait Result {
 	protected $result;
 
 	/**
-	 * @return string
+	 * @return mixed
 	 */
 	public function getResult() {
 		return $this->result;
 	}
 
 	/**
-	 * @param string $result
+	 * @param mixed $result
 	 *
 	 * @return $this
 	 */

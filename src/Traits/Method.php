@@ -27,6 +27,9 @@ trait Method {
 	 * @return $this
 	 */
 	public function setMethod($method) {
+		if (!is_string($method) || !strlen($method)) {
+			throw new \Error('', 0);
+		}
 		$this->method = $method;
 
 		return $this;

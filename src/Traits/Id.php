@@ -10,6 +10,10 @@ namespace JsonRpc\Traits;
  */
 trait Id {
 	/**
+	 * @var int
+	 */
+	protected static $_id = 0;
+	/**
 	 * @var integer
 	 */
 	protected $id;
@@ -26,12 +30,13 @@ trait Id {
 	 *
 	 * @return $this
 	 */
-	public function setId($id) {
-		if(is_null($id)) {
+	public function setId($id = null) {
+		if (is_null($id)) {
 			$this->id = ++self::$_id;
+
 			return $this;
 		}
-		if (!is_numeric($id)) {
+		if (!is_integer($id)) {
 			throw new \Error('', 0);
 		}
 		$this->id = (int)$id;

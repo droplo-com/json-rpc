@@ -27,6 +27,12 @@ trait ResultError {
 	 * @return $this
 	 */
 	public function setError($error) {
+		if (!is_array($error) || /* type */
+			!isset($error['message']) || !isset($error['code']) || /* isset */
+			!is_string($error['message']) || !is_string($error['code']) || /* type */
+			!strlen($error['message']) || !strlen($error['code'])/* length */) {
+			throw new \Error('', 0);
+		}
 		$this->type = 'ResponseError';
 		$this->error = $error;
 

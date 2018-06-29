@@ -4,39 +4,32 @@
  */
 
 namespace JsonRpc;
+const FIELDS = [
+	'Request' => [
+		'id',
+		'resource',
+		'method',
+		'params'
+	],
+	'Notification' => [
+		'resource',
+		'method',
+		'params'
+	],
+	'Response' => [
+		'id',
+		'result'
+	],
+	'ResponseError' => [
+		'id',
+		'error'
+	]
+];
 /**
  * Class JsonRpc
  * @package JsonRpc
  */
 class JsonRpc {
-	/**
-	 * @var int
-	 */
-	protected static $_id = 0;
-	/**
-	 * @var array
-	 */
-	protected static $fields = [
-		'Request' => [
-			'id',
-			'resource',
-			'method',
-			'params'
-		],
-		'Notification' => [
-			'resource',
-			'method',
-			'params'
-		],
-		'Response' => [
-			'id',
-			'result'
-		],
-		'ResponseError' => [
-			'id',
-			'error'
-		]
-	];
 	/**
 	 * @var string
 	 */
@@ -52,7 +45,7 @@ class JsonRpc {
 	 */
 	public function toString() {
 		$exports = ['version' => self::$version];
-		foreach (self::$fields[$this->type] as $key) {
+		foreach (FIELDS[$this->type] as $key) {
 			$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
 			$exports[$key] = $this->$key;
 		}
@@ -72,6 +65,7 @@ class JsonRpc {
 		if (!$type) {
 			throw new \Error('', 0);
 		}
+		$type = '\\JsonRpc\\' . $type;
 
 		return new $type($data);
 	}
@@ -82,7 +76,8 @@ class JsonRpc {
 	 * @return string|bool
 	 */
 	public static function getType($data) {
-		foreach (self::$fields as $name => $fields) {
+		foreach (FIELDS as $name => $fields) {
+			$fields[] = 'version';
 			if (self::hasFields($data, $fields)) {
 				return $name;
 			}
@@ -97,7 +92,7 @@ class JsonRpc {
 	 *
 	 * @return bool
 	 */
-	protected static function hasFields($array, $fields) {
+	public static function hasFields($array, $fields) {
 		if (count($array) !== count($fields)) {
 			return false;
 		}
@@ -116,7 +111,7 @@ class JsonRpc {
 	 *
 	 * @throws
 	 */
-	protected function throwIfNull($property, $error) {
+	public function throwIfNull($property, $error) {
 		if (!isset($this->$property)) {
 			throw $error;
 		}

@@ -17,6 +17,7 @@ class NotificationTest extends TestCase {
 			'params' => []
 		]));
 	}
+
 	public function testToStringThrowOnMissingProps() {
 		$this->expectException(\Error::class);
 		(new Notification())->toString();

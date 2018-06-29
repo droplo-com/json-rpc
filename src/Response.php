@@ -31,4 +31,24 @@ class Response extends JsonRpc {
 			isset($data['error']) && $this->setError($data['error']);
 		}
 	}
+
+	/**
+	 * @throws \Error
+	 * @return string
+	 */
+	public function toString() {
+		$this->throwIfNull('id', new \Error("Missing property 'id'"));
+		$exports = [
+			'version' => self::$version,
+			'id' => $this->id
+		];
+		if ($this->type === 'ResponseError') {
+			$this->throwIfNull('error', new \Error("Missing property 'error'"));
+			$exports['error'] = $this->error;
+		} else {
+			$exports['result'] = $this->result;
+		}
+
+		return Serializer::serialize($exports);
+	}
 }

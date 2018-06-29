@@ -27,6 +27,9 @@ trait Params {
 	 * @return $this
 	 */
 	public function setParams($params) {
+		if (!is_array($params)) {
+			throw new \Error('', 0);
+		}
 		$this->params = $params;
 
 		return $this;
