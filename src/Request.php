@@ -5,10 +5,9 @@
 
 namespace JsonRpc;
 
-use JsonRpc\Traits\Id;
-use JsonRpc\Traits\Method;
-use JsonRpc\Traits\Params;
-use JsonRpc\Traits\Resource;
+use JsonRpc\Traits\{
+	Id, Method, Params, Resource
+};
 
 class Request extends JsonRpc {
 	use Id;

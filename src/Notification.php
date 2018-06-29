@@ -5,9 +5,9 @@
 
 namespace JsonRpc;
 
-use JsonRpc\Traits\Method;
-use JsonRpc\Traits\Params;
-use JsonRpc\Traits\Resource;
+use JsonRpc\Traits\{
+	Method, Params, Resource
+};
 
 class Notification extends JsonRpc {
 	use Resource;
