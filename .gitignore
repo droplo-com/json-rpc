@@ -26,3 +26,6 @@ vendor/
 
 # CodeClimate
 codeclimate.html
+
+# Coverage
+coverage/
