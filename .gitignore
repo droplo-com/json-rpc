@@ -23,3 +23,6 @@ fabric.properties
 # Composer
 composer.phar
 vendor/
+
+# CodeClimate
+codeclimate.html
