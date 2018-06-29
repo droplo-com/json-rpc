@@ -9,6 +9,10 @@ use JsonRpc\Traits\{
 	Id, Result, ResultError
 };
 
+/**
+ * Class Response
+ * @package JsonRpc
+ */
 class Response extends JsonRpc {
 	use Id;
 	use Result;

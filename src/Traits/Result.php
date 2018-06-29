@@ -4,6 +4,10 @@
  */
 
 namespace JsonRpc\Traits;
+/**
+ * Trait Result
+ * @package JsonRpc\Traits
+ */
 trait Result {
 	/**
 	 * @var string

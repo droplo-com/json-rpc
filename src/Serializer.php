@@ -4,9 +4,13 @@
  */
 
 namespace JsonRpc;
+/**
+ * Class Serializer
+ * @package JsonRpc
+ */
 class Serializer {
 	/**
-	 * @param $data
+	 * @param mixed $data
 	 *
 	 * @return string
 	 */
@@ -15,7 +19,7 @@ class Serializer {
 	}
 
 	/**
-	 * @param $data
+	 * @param string $data
 	 *
 	 * @return mixed
 	 */

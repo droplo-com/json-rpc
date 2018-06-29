@@ -4,6 +4,10 @@
  */
 
 namespace JsonRpc;
+/**
+ * Class JsonRpc
+ * @package JsonRpc
+ */
 class JsonRpc {
 	/**
 	 * @var int

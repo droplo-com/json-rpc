@@ -9,6 +9,10 @@ use JsonRpc\Traits\{
 	Method, Params, Resource
 };
 
+/**
+ * Class Notification
+ * @package JsonRpc
+ */
 class Notification extends JsonRpc {
 	use Resource;
 	use Method;

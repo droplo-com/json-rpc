@@ -9,6 +9,10 @@ use JsonRpc\Traits\{
 	Id, Method, Params, Resource
 };
 
+/**
+ * Class Request
+ * @package JsonRpc
+ */
 class Request extends JsonRpc {
 	use Id;
 	use Resource;

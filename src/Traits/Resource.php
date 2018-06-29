@@ -4,6 +4,10 @@
  */
 
 namespace JsonRpc\Traits;
+/**
+ * Trait Resource
+ * @package JsonRpc\Traits
+ */
 trait Resource {
 	/**
 	 * @var string

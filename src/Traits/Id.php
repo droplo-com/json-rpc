@@ -4,6 +4,10 @@
  */
 
 namespace JsonRpc\Traits;
+/**
+ * Trait Id
+ * @package JsonRpc\Traits
+ */
 trait Id {
 	/**
 	 * @var integer
