@@ -84,15 +84,4 @@ class TraitsTest extends TestCase {
 		$mock = $this->getMockForTrait(ResultError::class);
 		$mock->setError('');
 	}
-	/*public function testSetResourceValid() {
-		$mock = $this->getMockForTrait(Resource::class);
-		$mock->setResource('SomeResource');
-		$this->assertEquals('SomeResource', $mock->getResource());
-	}
-
-	public function testSetResourceEmptyString() {
-		$this->expectException('Error');
-		$mock = $this->getMockForTrait(Resource::class);
-		$mock->setResource('');
-	}*/
 }
