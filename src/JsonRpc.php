@@ -40,27 +40,13 @@ class JsonRpc {
 	protected $type;
 
 	/**
-	 * @throws \Error
-	 * @return string
-	 */
-	public function toString() {
-		$exports = ['version' => self::$version];
-		foreach (FIELDS[$this->type] as $key) {
-			$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
-			$exports[$key] = $this->$key;
-		}
-
-		return Serializer::serialize($exports);
-	}
-
-	/**
 	 * @param string|array $message
 	 *
 	 * @throws \Error
 	 * @return Notification|Request|Response
 	 */
 	public static function parse($message) {
-		if(is_string($message)) {
+		if (is_string($message)) {
 			$message = Serializer::deserialize($message);
 		}
 		$type = self::getType($message);
@@ -105,6 +91,20 @@ class JsonRpc {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @throws \Error
+	 * @return string
+	 */
+	public function toString() {
+		$exports = ['version' => self::$version];
+		foreach (FIELDS[$this->type] as $key) {
+			$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
+			$exports[$key] = $this->$key;
+		}
+
+		return Serializer::serialize($exports);
 	}
 
 	/**

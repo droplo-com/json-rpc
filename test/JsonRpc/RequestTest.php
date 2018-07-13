@@ -5,8 +5,8 @@
 
 namespace JsonRpc\Test;
 
-use PHPUnit\Framework\TestCase;
 use JsonRpc\Request;
+use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase {
 	public function testConstructor() {
