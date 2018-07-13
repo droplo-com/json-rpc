@@ -17,6 +17,7 @@ class ClientTest extends TestCase {
 			'method' => 'echo',
 			'params' => ['param' => 'value']
 		]));
-		$this->assertEquals('{"version":"1.2.0","id":1,"result":{"param":"value"}}', $response->toString());
+		$this->assertEquals(null, $response->getError());
+		$this->assertEquals(['param' => 'value'], $response->getResult());
 	}
 }
