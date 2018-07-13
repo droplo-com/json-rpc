@@ -54,20 +54,22 @@ class JsonRpc {
 	}
 
 	/**
-	 * @param $string
+	 * @param string|array $message
 	 *
 	 * @throws \Error
 	 * @return Notification|Request|Response
 	 */
-	public static function parse($string) {
-		$data = Serializer::deserialize($string);
-		$type = self::getType($data);
+	public static function parse($message) {
+		if(is_string($message)) {
+			$message = Serializer::deserialize($message);
+		}
+		$type = self::getType($message);
 		if (!$type) {
-			throw new \Error('', 0);
+			throw new \Error('Unknown message type', 0);
 		}
 		$type = '\\JsonRpc\\' . $type;
 
-		return new $type($data);
+		return new $type($message);
 	}
 
 	/**
