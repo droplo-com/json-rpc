@@ -48,10 +48,11 @@ class Resource {
 	 * @return mixed
 	 */
 	public function __call($name, $params) {
+		$params = isset($params[0]) ? $params[0] : [];
 		$request = new Request([
 			'resource' => $this->name,
 			'method' => $name,
-			'params' => $params ?? []
+			'params' => $params
 		]);
 		$response = $this->apiClient->client->send($request);
 		if ($error = $response->getError()) {

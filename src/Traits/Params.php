@@ -10,25 +10,25 @@ namespace JsonRpc\Traits;
  */
 trait Params {
 	/**
-	 * @var string
+	 * @var array
 	 */
 	protected $params = [];
 
 	/**
-	 * @return string
+	 * @return array
 	 */
 	public function getParams() {
 		return $this->params;
 	}
 
 	/**
-	 * @param string $params
+	 * @param array $params
 	 *
 	 * @return $this
 	 */
 	public function setParams($params) {
 		if (!is_array($params)) {
-			throw new \Error('', 0);
+			throw new \Error('$params must be array', 0);
 		}
 		$this->params = $params;
 

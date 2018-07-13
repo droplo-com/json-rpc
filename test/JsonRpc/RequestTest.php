@@ -18,7 +18,7 @@ class RequestTest extends TestCase {
 			'params' => []
 		]);
 		$this->assertInstanceOf(Request::class, $request);
-		$this->assertEquals('{"version":"1.2.0","id":1,"resource":"Test","method":"test","params":[]}', $request->toString());
+		$this->assertEquals('{"version":"1.2.0","id":1,"resource":"Test","method":"test","params":{}}', $request->toString());
 	}
 
 	public function testToStringThrowOnMissingProps() {

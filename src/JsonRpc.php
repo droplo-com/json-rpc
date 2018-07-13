@@ -103,6 +103,9 @@ class JsonRpc {
 			$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
 			$exports[$key] = $this->$key;
 		}
+		if (isset($exports['params'])) {
+			$exports['params'] = (object)$exports['params'];
+		}
 
 		return Serializer::serialize($exports);
 	}
