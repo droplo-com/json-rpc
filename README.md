@@ -22,3 +22,14 @@ if($error = $response->getError()) {
 $result = $response->getResult();
 var_dump($result);
 ```
+or
+```php
+use JsonRpc\ApiClient;
+$client = new ApiClient('http://localhost:8080/');
+try{
+	$result = $client->Test->echo(['param' => 'value']);
+} catch(\Error $e) {
+	die("Got error: " . $error['message']);
+}
+var_dump($result);
+```
