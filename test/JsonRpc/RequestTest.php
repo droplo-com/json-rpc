@@ -5,8 +5,8 @@
 
 namespace JsonRpc\Test;
 
-use PHPUnit\Framework\TestCase;
 use JsonRpc\Request;
+use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase {
 	public function testConstructor() {
@@ -17,7 +17,7 @@ class RequestTest extends TestCase {
 			'params' => []
 		]);
 		$this->assertInstanceOf(Request::class, $request);
-		$this->assertEquals('{"version":"1.2.0","id":2,"resource":"Test","method":"test","params":[]}', $request->toString());
+		$this->assertEquals('{"version":"1.2.0","id":3,"resource":"Test","method":"test","params":[]}', $request->toString());
 	}
 
 	public function testToStringThrowOnMissingProps() {

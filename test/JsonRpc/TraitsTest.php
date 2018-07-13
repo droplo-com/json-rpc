@@ -5,10 +5,10 @@
 
 namespace JsonRpc\Test;
 
-use PHPUnit\Framework\TestCase;
 use JsonRpc\Traits\{
-	Id, Resource, Method, Params, Result, ResultError
+	Id, Method, Params, Resource, Result, ResultError
 };
+use PHPUnit\Framework\TestCase;
 
 class TraitsTest extends TestCase {
 	public function testSetIdValid() {

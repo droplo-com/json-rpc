@@ -5,8 +5,8 @@
 
 namespace JsonRpc\Test;
 
-use PHPUnit\Framework\TestCase;
 use JsonRpc\Notification;
+use PHPUnit\Framework\TestCase;
 
 class NotificationTest extends TestCase {
 	public function testConstructor() {
