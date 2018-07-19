@@ -1,6 +1,5 @@
 {
   "name": "etk-pl/json-rpc",
-  "version" : "0.1.0",
   "type": "library",
   "require-dev": {
     "phpunit/phpunit": "^7.2"
