@@ -81,11 +81,14 @@ class JsonRpc {
 	 * @return bool
 	 */
 	public static function hasFields($array, $fields) {
+		if (!is_array($array) || !is_array($fields)) {
+			return false;
+		}
 		if (count($array) !== count($fields)) {
 			return false;
 		}
 		foreach ($fields as $field) {
-			if (!isset($array[$field])) {
+			if (!array_key_exists($field, $array)) {
 				return false;
 			}
 		}
