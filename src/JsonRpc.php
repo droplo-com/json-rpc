@@ -50,6 +50,9 @@ class JsonRpc {
 			$message = Serializer::deserialize($message);
 		}
 		$type = self::getType($message);
+		if($type === 'ResponseError') {
+			$type = 'Response';
+		}
 		if (!$type) {
 			throw new \Error('Unknown message type', 0);
 		}
