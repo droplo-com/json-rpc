@@ -50,7 +50,7 @@ class JsonRpc {
 			$message = Serializer::deserialize($message);
 		}
 		$type = self::getType($message);
-		if($type === 'ResponseError') {
+		if ($type === 'ResponseError') {
 			$type = 'Response';
 		}
 		if (!$type) {
@@ -104,6 +104,14 @@ class JsonRpc {
 	 * @return string
 	 */
 	public function toString() {
+		return Serializer::serialize($this->toJSON());
+	}
+
+	/**
+	 * @throws \Error
+	 * @return array
+	 */
+	public function toJSON() {
 		$exports = ['version' => self::$version];
 		foreach (FIELDS[$this->type] as $key) {
 			$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
@@ -113,7 +121,7 @@ class JsonRpc {
 			$exports['params'] = (object)$exports['params'];
 		}
 
-		return Serializer::serialize($exports);
+		return $exports;
 	}
 
 	/**
