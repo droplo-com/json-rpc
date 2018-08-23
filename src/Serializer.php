@@ -15,7 +15,7 @@ class Serializer {
 	 * @return string
 	 */
 	public static function serialize($data) {
-		return json_encode($data);
+		return JSONLess::stringify($data);
 	}
 
 	/**
@@ -24,6 +24,6 @@ class Serializer {
 	 * @return mixed
 	 */
 	public static function deserialize($data) {
-		return json_decode($data, true);
+		return JSONLess::parse($data);
 	}
 }
