@@ -13,24 +13,32 @@ class JSONLess {
 	 * @return array
 	 */
 	static function parse($string) {
-		$reviver = function ($value) use (&$reviver) {
-			if (is_array($value)) {
-				if (isset($value['$type']) && isset(self::$handlers[$value['$type']])) {
-					return self::$handlers[$value['$type']]['reviver']($value);
-				}
-
-				return array_map($reviver, $value);
-			}
-
-			return $value;
-		};
 		if (is_string($string) && strlen($string)) {
 			$value = \json_decode($string, true);
 		} else {
 			$value = $string;
 		}
 
-		return $reviver($value);
+		return self::reviver($value);
+	}
+
+	/**
+	 * @param mixed $value
+	 *
+	 * @return mixed
+	 */
+	static function reviver($value) {
+		if (is_array($value)) {
+			if (isset($value['$type']) && isset(self::$handlers[$value['$type']])) {
+				return self::$handlers[$value['$type']]['reviver']($value);
+			}
+
+			return array_map(function ($value) {
+				return self::reviver($value);
+			}, $value);
+		}
+
+		return $value;
 	}
 
 	/**
@@ -39,24 +47,31 @@ class JSONLess {
 	 * @return string
 	 */
 	static function stringify($value) {
-		$replacer = function ($value) use (&$replacer) {
-			if (is_object($value)) {
-				$name = get_class($value);
-				if (isset(self::$handlers[$name])) {
-					return [
-						'$type' => $name,
-						'$value' => self::$handlers[$name]['replacer']($value)
-					];
-				}
-			}
-			if (is_array($value)) {
-				return array_map($replacer, $value);
-			}
+		return json_encode(self::replacer($value));
+	}
 
-			return $value;
-		};
+	/**
+	 * @param mixed $value
+	 *
+	 * @return mixed
+	 */
+	static function replacer($value) {
+		if (is_object($value)) {
+			$name = get_class($value);
+			if (isset(self::$handlers[$name])) {
+				return [
+					'$type' => $name,
+					'$value' => self::$handlers[$name]['replacer']($value)
+				];
+			}
+		}
+		if (is_array($value)) {
+			return array_map(function ($value) {
+				return self::replacer($value);
+			}, $value);
+		}
 
-		return json_encode($replacer($value));
+		return $value;
 	}
 
 	/**
