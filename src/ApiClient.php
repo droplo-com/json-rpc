@@ -56,7 +56,7 @@ class Resource {
 		]);
 		$response = $this->apiClient->client->send($request);
 		if ($error = $response->getError()) {
-			throw new \Error($error['message'], $error['code']);
+			throw new \Error($error['message'], (int)$error['code']);
 		}
 
 		return $response->getResult();
