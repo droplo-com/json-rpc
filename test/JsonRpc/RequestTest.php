@@ -10,19 +10,19 @@ use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase {
 	public function testConstructor() {
-		$this->assertInstanceOf(Request::class, new Request());
+		$this->assertInstanceOf('JsonRpc\Request', new Request());
 		$request = new Request([
 			'id' => 1,
 			'resource' => 'Test',
 			'method' => 'test',
 			'params' => []
 		]);
-		$this->assertInstanceOf(Request::class, $request);
+		$this->assertInstanceOf('JsonRpc\Request', $request);
 		$this->assertEquals('{"version":"1.2.0","id":1,"resource":"Test","method":"test","params":{}}', $request->toString());
 	}
 
 	public function testToStringThrowOnMissingProps() {
-		$this->expectException(\Error::class);
+		$this->setExpectedException('Error');
 		(new Request())->toString();
 	}
 }

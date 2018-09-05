@@ -4,27 +4,6 @@
  */
 
 namespace JsonRpc;
-const FIELDS = [
-	'Request' => [
-		'id',
-		'resource',
-		'method',
-		'params'
-	],
-	'Notification' => [
-		'resource',
-		'method',
-		'params'
-	],
-	'Response' => [
-		'id',
-		'result'
-	],
-	'ResponseError' => [
-		'id',
-		'error'
-	]
-];
 /**
  * Class JsonRpc
  * @package JsonRpc
@@ -34,6 +13,27 @@ class JsonRpc {
 	 * @var string
 	 */
 	public static $version = '1.2.0';
+	private static $FIELDS = [
+		'Request' => [
+			'id',
+			'resource',
+			'method',
+			'params'
+		],
+		'Notification' => [
+			'resource',
+			'method',
+			'params'
+		],
+		'Response' => [
+			'id',
+			'result'
+		],
+		'ResponseError' => [
+			'id',
+			'error'
+		]
+	];
 	/**
 	 * @var string
 	 */
@@ -67,7 +67,7 @@ class JsonRpc {
 	 * @return string|bool
 	 */
 	public static function getType($data) {
-		foreach (FIELDS as $name => $fields) {
+		foreach (self::$FIELDS as $name => $fields) {
 			$fields[] = 'version';
 			if (self::hasFields($data, $fields)) {
 				return $name;
@@ -113,7 +113,7 @@ class JsonRpc {
 	 */
 	public function toJSON() {
 		$exports = ['version' => self::$version];
-		foreach (FIELDS[$this->type] as $key) {
+		foreach (self::$FIELDS[$this->type] as $key) {
 			if ($this->type !== 'ResponseError' && $key !== 'id') {
 				$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
 			}

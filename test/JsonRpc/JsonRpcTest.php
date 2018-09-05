@@ -16,7 +16,7 @@ class JsonRpcTest extends TestCase {
 
 	public function testParse() {
 		$request = JsonRpc::parse('{"version":"1.2.0","id":2,"resource":"Test","method":"test","params":[]}');
-		$this->assertInstanceOf(Request::class, $request);
+		$this->assertInstanceOf('JsonRpc\Request', $request);
 	}
 }
 

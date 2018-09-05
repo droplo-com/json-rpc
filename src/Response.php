@@ -5,9 +5,9 @@
 
 namespace JsonRpc;
 
-use JsonRpc\Traits\{
-	Id, Result, ResultError
-};
+use JsonRpc\Traits\Id;
+use JsonRpc\Traits\Result;
+use JsonRpc\Traits\ResultError;
 
 /**
  * Class Response

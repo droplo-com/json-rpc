@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class NotificationTest extends TestCase {
 	public function testConstructor() {
-		$this->assertInstanceOf(Notification::class, new Notification());
-		$this->assertInstanceOf(Notification::class, new Notification([
+		$this->assertInstanceOf('JsonRpc\Notification', new Notification());
+		$this->assertInstanceOf('JsonRpc\Notification', new Notification([
 			'resource' => 'Test',
 			'method' => 'test',
 			'params' => []
@@ -19,7 +19,7 @@ class NotificationTest extends TestCase {
 	}
 
 	public function testToStringThrowOnMissingProps() {
-		$this->expectException(\Error::class);
+		$this->setExpectedException('Error');
 		(new Notification())->toString();
 	}
 }
