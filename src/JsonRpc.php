@@ -114,7 +114,9 @@ class JsonRpc {
 	public function toJSON() {
 		$exports = ['version' => self::$version];
 		foreach (FIELDS[$this->type] as $key) {
-			$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
+			if ($this->type !== 'ResponseError' && $key !== 'id') {
+				$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
+			}
 			$exports[$key] = $this->$key;
 		}
 		if (isset($exports['params'])) {
