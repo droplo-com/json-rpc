@@ -19,7 +19,7 @@ class NotificationTest extends TestCase {
 	}
 
 	public function testToStringThrowOnMissingProps() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		(new Notification())->toString();
 	}
 }

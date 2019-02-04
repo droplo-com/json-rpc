@@ -5,20 +5,17 @@
 
 namespace JsonRpc;
 
-use JsonRpc\Traits\Id;
-use JsonRpc\Traits\Method;
-use JsonRpc\Traits\Params;
-use JsonRpc\Traits\Resource;
+
 
 /**
  * Class Request
  * @package JsonRpc
  */
 class Request extends JsonRpc {
-	use Id;
-	use Resource;
-	use Method;
-	use Params;
+	use Traits\Id;
+	use Traits\Method;
+	use Traits\Params;
+	use Traits\Resource;
 
 	/**
 	 * Request constructor.

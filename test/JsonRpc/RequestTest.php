@@ -22,7 +22,7 @@ class RequestTest extends TestCase {
 	}
 
 	public function testToStringThrowOnMissingProps() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		(new Request())->toString();
 	}
 }

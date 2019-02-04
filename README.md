@@ -28,7 +28,7 @@ use JsonRpc\ApiClient;
 $client = new ApiClient('http://localhost:8080/');
 try{
 	$result = $client->Test->echo(['param' => 'value']);
-} catch(\Error $e) {
+} catch(\Exception $e) {
 	die("Got error: " . $error['message']);
 }
 var_dump($result);

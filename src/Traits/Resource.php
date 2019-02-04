@@ -28,7 +28,7 @@ trait Resource {
 	 */
 	public function setResource($resource) {
 		if (!is_string($resource) || !strlen($resource)) {
-			throw new \Error('', 0);
+			throw new \Exception('', 0);
 		}
 		$this->resource = $resource;
 

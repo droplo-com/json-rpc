@@ -23,7 +23,7 @@ class TraitsTest extends TestCase {
 	}
 
 	public function testSetIdEmptyString() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		$mock = $this->getMockForTrait('JsonRpc\Traits\Id');
 		$mock->setId(12.2);
 	}
@@ -35,7 +35,7 @@ class TraitsTest extends TestCase {
 	}
 
 	public function testSetResourceEmptyString() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		$mock = $this->getMockForTrait('JsonRpc\Traits\Resource');
 		$mock->setResource('');
 	}
@@ -47,7 +47,7 @@ class TraitsTest extends TestCase {
 	}
 
 	public function testSetMethodEmptyString() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		$mock = $this->getMockForTrait('JsonRpc\Traits\Method');
 		$mock->setMethod('');
 	}
@@ -59,7 +59,7 @@ class TraitsTest extends TestCase {
 	}
 
 	public function testSetParamsEmptyString() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		$mock = $this->getMockForTrait('JsonRpc\Traits\Params');
 		$mock->setParams('someParam');
 	}
@@ -83,7 +83,7 @@ class TraitsTest extends TestCase {
 	}
 
 	public function testSetResultError() {
-		$this->setExpectedException('Error');
+		$this->setExpectedException('Exception');
 		$mock = $this->getMockForTrait('JsonRpc\Traits\ResultError');
 		$mock->setError('');
 	}
