@@ -14,7 +14,7 @@ class Client {
 	 */
 	public function __construct($endpoint) {
 		if (!is_string($endpoint) || !strlen($endpoint)) {
-			throw new \Error('$endpoint must be not empty string');
+			throw new \Exception('$endpoint must be not empty string');
 		}
 		$this->endpoint = $endpoint;
 	}
@@ -22,7 +22,7 @@ class Client {
 	/**
 	 * @param Notification|Request|array $message
 	 *
-	 * @throws \Error
+	 * @throws \Exception
 	 * @return Response
 	 */
 	public function send($message) {
@@ -30,7 +30,7 @@ class Client {
 			$message = JsonRpc::parse($message);
 		}
 		if (!($message instanceof Request || $message instanceof Notification)) {
-			throw new \Error('Only Request or Notification messages are allowed');
+			throw new \Exception('Only Request or Notification messages are allowed');
 		}
 
 		return JsonRpc::parse($this->request($message->toString()));
@@ -51,7 +51,7 @@ class Client {
 		$response = \curl_exec($curl);
 		$status = \curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		if ($status != 200) {
-			throw new \Error("Status: " . $status);
+			throw new \Exception("Status: " . $status);
 		}
 		\curl_close($curl);
 

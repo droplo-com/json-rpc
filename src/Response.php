@@ -5,18 +5,16 @@
 
 namespace JsonRpc;
 
-use JsonRpc\Traits\{
-	Id, Result, ResultError
-};
+
 
 /**
  * Class Response
  * @package JsonRpc
  */
 class Response extends JsonRpc {
-	use Id;
-	use Result;
-	use ResultError;
+	use Traits\Id;
+	use Traits\Result;
+	use Traits\ResultError;
 
 	/**
 	 * Result constructor.
@@ -33,17 +31,17 @@ class Response extends JsonRpc {
 	}
 
 	/**
-	 * @throws \Error
+	 * @throws \Exception
 	 * @return string
 	 */
 	public function toString() {
-		$this->throwIfNull('id', new \Error("Missing property 'id'"));
+		$this->throwIfNull('id', new \Exception("Missing property 'id'"));
 		$exports = [
 			'version' => self::$version,
 			'id' => $this->id
 		];
 		if ($this->type === 'ResponseError') {
-			$this->throwIfNull('error', new \Error("Missing property 'error'"));
+			$this->throwIfNull('error', new \Exception("Missing property 'error'"));
 			$exports['error'] = $this->error;
 		} else {
 			$exports['result'] = $this->result;

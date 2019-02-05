@@ -31,7 +31,7 @@ trait ResultError {
 			!isset($error['message']) || !isset($error['code']) || /* isset */
 			!is_string($error['message']) || !is_string($error['code']) || /* type */
 			!strlen($error['message']) || !strlen($error['code'])/* length */) {
-			throw new \Error('', 0);
+			throw new \Exception('', 0);
 		}
 		$this->type = 'ResponseError';
 		$this->error = $error;

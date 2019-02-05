@@ -4,27 +4,6 @@
  */
 
 namespace JsonRpc;
-const FIELDS = [
-	'Request' => [
-		'id',
-		'resource',
-		'method',
-		'params'
-	],
-	'Notification' => [
-		'resource',
-		'method',
-		'params'
-	],
-	'Response' => [
-		'id',
-		'result'
-	],
-	'ResponseError' => [
-		'id',
-		'error'
-	]
-];
 /**
  * Class JsonRpc
  * @package JsonRpc
@@ -34,6 +13,27 @@ class JsonRpc {
 	 * @var string
 	 */
 	public static $version = '1.2.0';
+	private static $FIELDS = [
+		'Request' => [
+			'id',
+			'resource',
+			'method',
+			'params'
+		],
+		'Notification' => [
+			'resource',
+			'method',
+			'params'
+		],
+		'Response' => [
+			'id',
+			'result'
+		],
+		'ResponseError' => [
+			'id',
+			'error'
+		]
+	];
 	/**
 	 * @var string
 	 */
@@ -42,7 +42,7 @@ class JsonRpc {
 	/**
 	 * @param string|array $message
 	 *
-	 * @throws \Error
+	 * @throws \Exception
 	 * @return Notification|Request|Response
 	 */
 	public static function parse($message) {
@@ -54,7 +54,7 @@ class JsonRpc {
 			$type = 'Response';
 		}
 		if (!$type) {
-			throw new \Error('Unknown message type', 0);
+			throw new \Exception('Unknown message type', 0);
 		}
 		$type = '\\JsonRpc\\' . $type;
 
@@ -67,7 +67,7 @@ class JsonRpc {
 	 * @return string|bool
 	 */
 	public static function getType($data) {
-		foreach (FIELDS as $name => $fields) {
+		foreach (self::$FIELDS as $name => $fields) {
 			$fields[] = 'version';
 			if (self::hasFields($data, $fields)) {
 				return $name;
@@ -100,7 +100,7 @@ class JsonRpc {
 	}
 
 	/**
-	 * @throws \Error
+	 * @throws \Exception
 	 * @return string
 	 */
 	public function toString() {
@@ -108,14 +108,14 @@ class JsonRpc {
 	}
 
 	/**
-	 * @throws \Error
+	 * @throws \Exception
 	 * @return array
 	 */
 	public function toJSON() {
 		$exports = ['version' => self::$version];
-		foreach (FIELDS[$this->type] as $key) {
+		foreach (self::$FIELDS[$this->type] as $key) {
 			if ($this->type !== 'ResponseError' && $key !== 'id') {
-				$this->throwIfNull($key, new \Error("Missing property '$key'", 0));
+				$this->throwIfNull($key, new \Exception("Missing property '$key'", 0));
 			}
 			$exports[$key] = $this->$key;
 		}

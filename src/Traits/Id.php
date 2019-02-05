@@ -37,7 +37,7 @@ trait Id {
 			return $this;
 		}
 		if (!is_integer($id)) {
-			throw new \Error('', 0);
+			throw new \Exception('', 0);
 		}
 		$this->id = (int)$id;
 
