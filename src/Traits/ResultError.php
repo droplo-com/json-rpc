@@ -22,7 +22,7 @@ trait ResultError {
 	}
 
 	/**
-	 * @param string $error
+	 * @param array $error
 	 *
 	 * @return $this
 	 */
